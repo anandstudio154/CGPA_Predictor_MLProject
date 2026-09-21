@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CGPA Predictor</title>
+
+    <link rel="stylesheet" href="static/style.css">
+    <script src="static/script.js" defer></script>
+</head>
+
+<body>
+    <div class="background-animation">
+        <canvas id="particles"></canvas>
+    </div>
+    <div class="container">
+
+        <h1>CGPA Predictor</h1>
+        <p>Predict your expected CGPA based on your academic habits.</p>
+
+        <form action="/predict" method="POST">
+
+            <label for="age">Age</label>
+            <input type="number" id="age" name="age" step="1" min="15" max="30" required>
+
+            <label for="attendance">Attendance (%)</label>
+            <input type="number" id="attendance" name="attendance" step="0.1" min="0" max="100" required>
+
+            <label for="study_hours">Study Hours per Day</label>
+            <input type="number" id="study_hours" name="study_hours" step="0.1" min="0" max="24" required>
+
+            <label for="sleep_hours">Sleep Hours</label>
+            <input type="number" id="sleep_hours" name="sleep_hours" step="0.1" min="0" max="24" required>
+
+            <label for="social_hours">Social Hours per Week</label>
+            <input type="number" id="social_hours" name="social_hours" step="0.1" min="0" max="168" required>
+
+            <button type="submit">Predict CGPA</button>
+
+        </form>
+
+        {% if prediction is not none %}
+        <div class="result">
+            <h2>Predicted CGPA</h2>
+            <div class="cgpa">{{ prediction }}</div>
+            <p>out of 10</p>
+        </div>
+        {% endif %}
+
+    </div>
+
+</body>
+
+</html>
